@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script></head>
+<body>
+    <div id="app">
+        <h1>Hello Vue</h1>
+        <p v-if>
+            {{ message }}
+        </p>
+        <button v-on:click="addExclamation">Add !</button>
+        <button v-on:click="clear">Clear</button>
+    </div>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Welcome',
+                counter: 0,  // accumulator for tracking amount of exclamation points
+            },
+            methods: {
+                addExclamation: function() {        // function adds a ! as long as the counter is below 9
+                    if (this.counter < 9) {
+                        this.message += '!'
+                        this.counter ++
+                    }
+                },
+                // function removes last character from string, so long as it is a !, then resets counter
+                clear: function() {
+                        while (this.message.charAt(this.message.length -1) === '!') {
+                            this.message = this.message.slice(0,-1)
+                            this.counter = 0
+                        }
+                    }
+                },
+        })
+    </script>
+
+</body>
+</html>
